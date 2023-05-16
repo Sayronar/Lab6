@@ -29,7 +29,7 @@ public class Main {
                 new RemoveByIdCommand(collectionManager),
                 new ClearCommand(collectionManager),
                 new SaveCommand(collectionManager),
-                new ExitCommand(),
+                new ClientExitCommand(),
                 new ExecuteScriptCommand(),
                 new ExecScriptCommand(),
                 new EmployeesCountCommand(collectionManager),

@@ -151,7 +151,7 @@ public class ExecScript {
                 case "execute_script":
                     if (commandArgument.isEmpty()) throw new CommandUsageException("<file_name>");
                     return ProcessingCode.SCRIPT;
-                case "exit":
+                case "client_exit":
                     if (!commandArgument.isEmpty()) throw new CommandUsageException();
                     break;
                 case "remove_greater":

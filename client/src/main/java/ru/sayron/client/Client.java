@@ -111,7 +111,7 @@ public class Client {
                     else Outputer.println("Try to repeat the command later.");
                 }
             }
-        } while (!requestToServer.getCommandName().equals("exit"));
+        } while (!requestToServer.getCommandName().equals("client_exit"));
         return false;
     }
 }

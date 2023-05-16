@@ -80,7 +80,7 @@ public class RequestHandler {
                 if (!commandManager.execScriptCommand(commandStringArgument, commandObjectArgument))
                     return ResponseCode.ERROR;
                 break;
-            case "exit":
+            case "client_exit":
                 if (!commandManager.exit(commandStringArgument, commandObjectArgument))
                     return ResponseCode.ERROR;
                 break;
