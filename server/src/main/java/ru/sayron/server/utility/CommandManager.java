@@ -33,13 +33,14 @@ public class CommandManager {
     private Command filterGreaterThanEmployeesCountCommand;
 
     private Command serverExitCommand;
+    private Command execScriptCommand;
 
     public CommandManager(Command helpCommand, Command infoCommand,
                           Command showCommand, Command addCommand, Command updateIdCommand, Command removeByIdCommand,
                           Command clearCommand, Command saveCommand, Command exitCommand, Command executeScriptCommand,
                           Command removeGreaterCommand, Command removeLowerCommand, Command historyCommand,
                           Command employeesCountCommand, Command filterContainsNameCommand,
-                          Command filterGreaterThanEmployeesCountCommand, Command serverExitCommand) {
+                          Command filterGreaterThanEmployeesCountCommand, Command serverExitCommand, Command execScriptCommand) {
         this.commandHistory = commandHistory;
         this.commands = commands;
         this.helpCommand = helpCommand;
@@ -59,6 +60,7 @@ public class CommandManager {
         this.filterContainsNameCommand = filterContainsNameCommand;
         this.filterGreaterThanEmployeesCountCommand = filterGreaterThanEmployeesCountCommand;
         this.serverExitCommand = serverExitCommand;
+        this.execScriptCommand = execScriptCommand;
 
         commands.add(helpCommand);
         commands.add(infoCommand);
@@ -77,6 +79,7 @@ public class CommandManager {
         commands.add(filterContainsNameCommand);
         commands.add(filterGreaterThanEmployeesCountCommand);
         commands.add(serverExitCommand);
+        commands.add(execScriptCommand);
     }
 
     /**
@@ -216,6 +219,10 @@ public class CommandManager {
      */
     public boolean executeScript(String stringArgument, Object objectArgument) {
         return executeScriptCommand.execute(stringArgument, objectArgument);
+    }
+
+    public boolean execScriptCommand(String stringArgument, Object objectArgument) {
+        return execScriptCommand.execute(stringArgument, objectArgument);
     }
 
     /**

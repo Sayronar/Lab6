@@ -1,5 +1,7 @@
 package ru.sayron.client;
 
+import ru.sayron.client.command.Client1;
+import ru.sayron.client.command.ExecScript;
 import ru.sayron.client.utility.UserHandler;
 import ru.sayron.common.exceptions.NotInDeclaredLimitsException;
 import ru.sayron.common.exceptions.WrongAmountOfElementsException;
@@ -16,12 +18,19 @@ public class Main {
 
     private static String host;
     private static int port;
+    private static String script;
 
     private static boolean initializeConnectionAddress(String[] hostAndPortArgs) {
         try {
-            if (hostAndPortArgs.length != 2) throw new WrongAmountOfElementsException();
-            host = hostAndPortArgs[0];
-            port = Integer.parseInt(hostAndPortArgs[1]);
+            if (hostAndPortArgs.length > 3 ) throw new WrongAmountOfElementsException();
+            if (hostAndPortArgs.length == 2) {
+                host = hostAndPortArgs[0];
+                port = Integer.parseInt(hostAndPortArgs[1]);
+            } else if (hostAndPortArgs.length == 3) {
+                host = hostAndPortArgs[0];
+                port = Integer.parseInt(hostAndPortArgs[1]);
+                script = hostAndPortArgs[2];
+            }
             if (port < 0) throw new NotInDeclaredLimitsException();
             return true;
         } catch (WrongAmountOfElementsException exception) {
@@ -41,10 +50,18 @@ public class Main {
 
     public static void main(String[] args) {
         if (!initializeConnectionAddress(args)) return;
-        Scanner userScanner = new Scanner(System.in);
-        UserHandler userHandler = new UserHandler(userScanner);
-        Client client = new Client(host, port, RECONNECTION_TIMEOUT, MAX_RECONNECTION_ATTEMPTS, userHandler);
-        client.run();
-        userScanner.close();
+        if (script == null) {
+            Scanner userScanner = new Scanner(System.in);
+            UserHandler userHandler = new UserHandler(userScanner);
+            Client client = new Client(host, port, RECONNECTION_TIMEOUT, MAX_RECONNECTION_ATTEMPTS, userHandler);
+            client.run();
+            userScanner.close();
+        } else {
+            Scanner userScanner = new Scanner(System.in);
+            ExecScript execScript = new ExecScript(userScanner, script);
+            Client1 client = new Client1(host, port, RECONNECTION_TIMEOUT, MAX_RECONNECTION_ATTEMPTS, execScript);
+            client.run();
+            userScanner.close();
+        }
     }
 }

@@ -31,6 +31,7 @@ public class Main {
                 new SaveCommand(collectionManager),
                 new ExitCommand(),
                 new ExecuteScriptCommand(),
+                new ExecScriptCommand(),
                 new EmployeesCountCommand(collectionManager),
                 new RemoveGreaterCommand(collectionManager),
                 new HistoryCommand(),
